@@ -1,10 +1,18 @@
-package com.mark.leetcode.answer.page7;
+package com.mark.leetcode.answer.page1;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 接雨水
  */
 class Solution42 {
-
+ReentrantLock a = new ReentrantLock();
+ReentrantReadWriteLock b;
+Semaphore semaphore = new Semaphore(10);
+CountDownLatch countDownLatch = new CountDownLatch(10);
     /**
      * 方法一 2个指针往中间求单调栈,两边往中间找到第一个比自己矮的,然后求这一段的蓄水量,需要注意的是如果i==j了,那么必须确保对方比自己高才能计算蓄水量
      *
@@ -12,6 +20,7 @@ class Solution42 {
      * @return
      */
     public int trap1(int[] height) {
+        countDownLatch.countDown();
         int i = 0, j = height.length - 1;
         while (i < j) {
             int start = i;

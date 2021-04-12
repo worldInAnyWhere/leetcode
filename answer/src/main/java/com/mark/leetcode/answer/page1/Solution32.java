@@ -1,4 +1,4 @@
-package com.mark.leetcode.answer.page7;
+package com.mark.leetcode.answer.page1;
 
 import java.util.LinkedList;
 
